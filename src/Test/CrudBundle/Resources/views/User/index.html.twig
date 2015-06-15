@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Список пользователей</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered main-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Email</th>
+                <th>Роль</th>
+                <th>Адреса</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.firstName }}</td>
+                    <td>{{ entity.lastName }}</td>
+                    <td>{{ entity.age }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.userRoles.roleName }}</td>
+                    <td>
+                        <table class="table table-condensed inner-table">
+                            <thead>
+                            <tr>
+                                <th>Индекс</th>
+                                <th>Город</th>
+                                <th>Улица / дом</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for address in entity.userAddresses %}
+                                <tr>
+                                    <td>{{ address.zip }}</td>
+                                    <td>{{ address.city }}</td>
+                                    <td>{{ address.address }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+
+                    <td>
+                        <ul>
+                            <li>
+                                <a class="btn btn-default btn-xs btn-block"
+                                   href="{{ path('user_show', { 'id': entity.id }) }}">Профиль</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-default btn-xs btn-block"
+                                   href="{{ path('user_edit', { 'id': entity.id }) }}">Редактировать</a>
+                            </li>
+                            <li>
+                                <form name="form" method="post" action="{{ path('user_delete', { 'id': entity.id }) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+
+                                    <div id="form">
+                                        <div>
+                                            <button class="btn btn-default btn-xs btn-block" type="submit" id="form_submit"
+                                                    name="form[submit]">Удалить
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+
+{% endblock %}

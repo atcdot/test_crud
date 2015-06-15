@@ -1,0 +1,18 @@
+_security_login:
+    pattern:  /login
+    defaults: { _controller: TestCrudBundle:Security:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
+
+test_crud:
+    resource: "@TestCrudBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

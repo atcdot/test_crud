@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Начальная страница.</h1>
+    <p>Для входа создать нового пользователя (или нескольких).</p>
+    <p>Но предже нужно создать роли для пользователей по <a href="{{ path('userroles') }}">ссылке</a></p>
+    <p>Роли определенные в правилах: <b>ROLE_SUPER_ADMIN</b>, <b>ROLE_ADMIN</b>, <b>ROLE_SIMPLE_USER</b>.</p>
+
+    <h2>Задание</h2>
+    <p>Задача заключается в следующем. Написать CRUD (create read update delete), с использованием Symfony2 Framework.<br/>
+        Сущности: <br/>
+        User:-&gt;properties: firstName, lastName, age, email. <br/>
+        Связанные сущности: <br/>
+        ManyToOne: UserRoles-&gt;properties: userId, roleName etc. <br/>
+        ManyToMany: UserArrdess-&gt;properties: zip, city, address (улица + номер дома). <br/><br/>
+
+        Интерфейс: <br/>
+        1) Авторизация. <br/>
+        2) Список пользователей, в таблицу выводим все данные пользователя + 3 кнопки "Профиль", "Редактировать", "Удалить" (использовать серверную пагинацию). <br/>
+        3) Создание/редактирование данных пользователя. <br/>
+        4) Профиль. <br/><br/>
+
+        Форма добавления пользователей:<br/>
+        firstName ( input-&gt;type=text ), lastName ( input -&gt;type=text ), age( input -&gt;type=number ), email (input-&gt;type=email ), userRole(select), userAddress (input) - пользователь может иметь неограниченное количество адресов, поля (zip, city, address) выстраиваются инлайн (в одну строчку). Рядом 2 кнопки "Добавить" + "Удалить". <br/><br/>
+
+        Реализовать валидацию как серверную силами Symfony2, так и клиентскую Jquery Validate. </p>
+{% endblock %}

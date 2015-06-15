@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Редактировать данные пользователя</h1>
+    {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form._token) }}
+    {{ form_row(edit_form.firstName) }}
+    {{ form_row(edit_form.lastName) }}
+    {{ form_row(edit_form.age) }}
+    {{ form_row(edit_form.email) }}
+    {{ form_row(edit_form.password.password) }}
+    {{ form_row(edit_form.password.confirm) }}
+    {{ form_row(edit_form.userRoles) }}
+
+
+    <div class="form-group address">
+        {{ form_label(edit_form.userAddresses) }}
+
+        <div class="col-sm-10">
+            <ul class="userAddresses" data-prototype="{{ form_widget(edit_form.userAddresses.vars.prototype)|e }}">
+                {% for userAddresses in edit_form.userAddresses %}
+                    <li>{{ form_widget(userAddresses) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    {{ form_row(edit_form.submit) }}
+
+    {{ form_end(edit_form, {'render_rest': false}) }}
+
+{% endblock %}

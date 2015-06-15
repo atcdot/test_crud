@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Профиль пользователя {{ entity.firstName }}</h1>
+
+    <table class="table table-bordered main-table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td>{{ entity.firstName }}</td>
+        </tr>
+        <tr>
+            <th>Фамилия</th>
+            <td>{{ entity.lastName }}</td>
+        </tr>
+        <tr>
+            <th>Возраст</th>
+            <td>{{ entity.age }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <th>Роль</th>
+            <td>{{ entity.userRoles.roleName }}</td>
+        </tr>
+        <tr>
+            <th>Адреса</th>
+            <td>
+                <table class="table table-condensed table-striped inner-table inner-table-profile ">
+                    <thead>
+                    <tr>
+                        <th>Индекс</th>
+                        <th>Город</th>
+                        <th>Улица / дом</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for address in entity.userAddresses %}
+                        <tr>
+                            <td>{{ address.zip }}</td>
+                            <td>{{ address.city }}</td>
+                            <td>{{ address.address }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

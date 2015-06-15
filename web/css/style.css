@@ -1,0 +1,30 @@
+.userAddresses {
+  list-style: none;
+  padding: 0;
+}
+.userAddresses li clear,
+.userAddresses li .form-group {
+  width: 33%;
+  margin: 0 0 15px;
+  display: inline-block;
+  height: 40px;
+}
+.address div label {
+  padding: 0;
+}
+.main-table th {
+  text-align: center;
+}
+.inner-table th {
+  text-align: left;
+}
+.inner-table-profile {
+  margin: 0;
+}
+td ul {
+  list-style: none;
+  padding: 0;
+}
+td ul li {
+  padding: 2px;
+}

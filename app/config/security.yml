@@ -1,0 +1,32 @@
+security:
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_SIMPLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    encoders:
+        Test\CrudBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+
+    providers:
+        main:
+            entity: { class: TestCrudBundle:User, property: email }
+
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout: true
+            security: true
+            anonymous: true
+
+    access_control:
+        - { path: /user/new.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /user/user_create.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /userroles.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /useraddress.*, role: ROLE_SUPER_ADMIN }
+        - { path: /user/., role: ROLE_SIMPLE_USER }
+        - { path: /user.*, role: ROLE_ADMIN }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
